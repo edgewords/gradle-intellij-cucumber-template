@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+}
+
+group 'com.edgewords'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile 'io.cucumber:cucumber-java:5.4.0'
+    testCompile 'io.cucumber:cucumber-junit:5.4.0'
+    testCompile 'org.seleniumhq.selenium:selenium-java:4.0.0-alpha-4'
+    testCompile 'org.seleniumhq.selenium:selenium-support:4.0.0-alpha-4'
+    //This is optional, used to download the required browser drivers automatically
+    testCompile 'io.github.bonigarcia:webdrivermanager:3.8.1'
+    //This is to stop warnings about missing logger, as logging not required
+    testCompile 'org.slf4j:slf4j-nop:1.7.30'
+}
+
+test {
+    useJUnit() //This is the default, so not required. Also supports TestNG
+    include(['**/*TestRunner.class']) //This is optional. Automatically looks for JUnit tests, or super classes using @RunWith annotation
+}
